@@ -1,0 +1,27 @@
+2026-06-08 14:50:02,191 INFO Saved raw response -> nem_summary_20260608T045002Z.json
+2026-06-08 14:50:02,429 INFO Store now holds 15 rows
+2026-06-08 14:50:02,433 INFO Latest snapshot:
+REGIONID    PRICE  TOTALDEMAND
+    NSW1 51.87000      7180.86
+    QLD1 48.91928      6132.01
+     SA1 -0.04767      1230.00
+    TAS1 71.94638      1074.59
+    VIC1 -0.04970      5108.49
+2026-06-08 15:15:02,447 INFO Saved raw response -> nem_summary_20260608T051502Z.json
+2026-06-08 15:15:02,640 INFO Store now holds 20 rows
+2026-06-08 15:15:02,644 INFO Latest snapshot:
+REGIONID    PRICE  TOTALDEMAND
+    NSW1 69.11630      7361.34
+    QLD1 67.19000      6102.83
+     SA1 -2.00000      1055.44
+    TAS1 80.20000      1104.66
+    VIC1 -2.12526      5299.67
+2026-06-08 15:20:02,318 INFO Saved raw response -> nem_summary_20260608T052002Z.json
+2026-06-08 15:20:02,524 INFO Store now holds 25 rows
+2026-06-08 15:20:02,528 INFO Latest snapshot:
+REGIONID    PRICE  TOTALDEMAND
+    NSW1 67.74506      7328.10
+    QLD1 67.19000      6238.99
+     SA1 -1.09992      1132.24
+    TAS1 80.20000      1105.05
+    VIC1 -1.16859      5316.15
