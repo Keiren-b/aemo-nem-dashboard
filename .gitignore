@@ -1,0 +1,16 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Raw and processed data
+data/raw/
+data/processed/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code workspace settings 
+.vscode/
