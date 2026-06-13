@@ -71,8 +71,8 @@ def date_features(df: pd.DataFrame) -> pd.DataFrame:
     df["Year"] = df["Settlement Date"].dt.year
     return df
 
-def spike(df: pd.DataFrame) -> pd.DataFrame:
-    df["Is Spike"] = df["Price ($/MWh)"] > 300
+def spike(df: pd.DataFrame, spike_threshold: float = 300.00) -> pd.DataFrame:
+    df["Is Spike"] = df["Price ($/MWh)"] > spike_threshold
     return df
 
 
