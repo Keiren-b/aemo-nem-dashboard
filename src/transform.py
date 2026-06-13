@@ -43,6 +43,40 @@ def standardise_timezone(df:pd.DataFrame) -> pd.DataFrame:
     df["Settlement Date"] = df["Settlement Date"].dt.tz_localize("Australia/Brisbane", ambiguous=False)
     return df
 
+def date_features(df: pd.DataFrame) -> pd.DataFrame:
+    df["Date"] = df["Settlement Date"].dt.date
+    df["Time"] = df["Settlement Date"].dt.time
+    df["Hour of Day"] = df["Settlement Date"].dt.hour
+    df["Day of Week"] = df["Settlement Date"].dt.day
+    df["Day Name"] = df["Settlement Date"].dt.day_name()
+    df["Weekday"] = df["Settlement Date"].dt.weekday
+    df["Month"] = df["Settlement Date"].dt.month
+    df["Month Name"] = df["Settlement Date"].dt.month_name()
+    df["Month End"] = df["Settlement Date"].dt.is_month_end
+    df["Quarter"] = df["Settlement Date"].dt.quarter
+    df["Season"] = df["Month"].map({
+        1: "Summer",
+        2: "Summer",
+        3: "Autumn",
+        4: "Autumn",
+        5: "Autumn",
+        6: "Winter",
+        7: "Winter",
+        8: "Winter",
+        9: "Spring",
+        10: "Spring",
+        11: "Spring",
+        12: "Summer"
+    })
+    df["Year"] = df["Settlement Date"].dt.year
+    return df
+
+def spike(df: pd.DataFrame) -> pd.DataFrame:
+    df["Is Spike"] = df["Price ($/MWh)"] > 300
+    return df
+
+
+
 # ---- Orchestration ----------------------------------------------------------
 
 def run() -> pd.DataFrame:
@@ -51,6 +85,8 @@ def run() -> pd.DataFrame:
     df = rename_cols(df)
     df = drop_redundant_cols(df)
     df = standardise_timezone(df)
+    df = date_features(df)
+    df = spike(df)
     
     # df = add_calendar_features(df)    # added once that function exists
     # df = add_price_classification(df) # added once that function exists
