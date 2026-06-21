@@ -14,3 +14,6 @@ data/processed/
 
 # VS Code workspace settings 
 .vscode/
+
+#csv files
+*.csv
