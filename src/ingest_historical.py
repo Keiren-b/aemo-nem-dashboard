@@ -1,4 +1,4 @@
-"""Backfill historical 30-minute price & demand from AEMO monthly CSVs."""
+"""Backfill historical 5-minute price & demand from AEMO monthly CSVs."""
 import logging
 import time
 

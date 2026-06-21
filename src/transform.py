@@ -43,11 +43,36 @@ def standardise_timezone(df:pd.DataFrame) -> pd.DataFrame:
     df["Settlement Date"] = df["Settlement Date"].dt.tz_localize("Australia/Brisbane", ambiguous=False)
     return df
 
+def flag_missing_time_intervals(df:pd.DataFrame) -> int:
+    pieces = []
+    for state in df["State"].unique():
+        state_data = df[df["State"]==state]
+        full_range = pd.date_range(
+        start=state_data["Settlement Date"].min(), 
+        end=state_data["Settlement Date"].max(),
+        freq = "5min",
+        tz=state_data["Settlement Date"].dt.tz
+        )
+        # missing = full_range.difference(state_time["Settlement Date"])
+
+        reindexed = (
+        state_data.set_index("Settlement Date")
+            .reindex(full_range)
+            .rename_axis("Settlement Date")
+            .reset_index()
+        )
+        reindexed["State"] = state
+        reindexed["is_imputed"] = reindexed["Price ($/MWh)"].isna()
+        pieces.append(reindexed)
+            
+    df = pd.concat(pieces, ignore_index=True)
+    return df.sort_values(["State", "Settlement Date"]).reset_index(drop=True)
+
 def date_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Engineering different Time and Date features to aid analysis"""
     df["Date"] = df["Settlement Date"].dt.date
     df["Time"] = df["Settlement Date"].dt.time
     df["Hour of Day"] = df["Settlement Date"].dt.hour
-    df["Day of Week"] = df["Settlement Date"].dt.day
     df["Day Name"] = df["Settlement Date"].dt.day_name()
     df["Weekday"] = df["Settlement Date"].dt.weekday
     df["Month"] = df["Settlement Date"].dt.month
@@ -72,10 +97,25 @@ def date_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 def spike(df: pd.DataFrame, spike_threshold: float = 300.00) -> pd.DataFrame:
+    """Creates a user defined spike flag to see when electricity prices spike above a threshold"""
     df["Is Spike"] = df["Price ($/MWh)"] > spike_threshold
     return df
 
+def add_rolling_features(df: pd.DataFrame, col: str, windows: dict[str, str], aggs: list[str] = ("mean",),) -> pd.DataFrame:
+    """calculates a range of rolling statistics over different time periods"""
+    df = df.sort_values(["State", "Settlement Date"]).reset_index(drop=True)
+    grouped = df.groupby("State", observed=True)
 
+    for suffix, window in windows.items():
+        for agg in aggs:
+            rolled = (
+                grouped.rolling(window, on="Settlement Date")[col]
+                .agg(agg)
+                .reset_index(level=0, drop=True)
+                .reset_index(drop=True)
+            )
+            df[f"Rolling {suffix} {agg.title()} {col}"] = rolled
+    return df
 
 # ---- Orchestration ----------------------------------------------------------
 
@@ -85,9 +125,12 @@ def run() -> pd.DataFrame:
     df = rename_cols(df)
     df = drop_redundant_cols(df)
     df = standardise_timezone(df)
+    df = flag_missing_time_intervals(df)
     df = date_features(df)
     df = spike(df)
-    
+    df = add_rolling_features(df, "Price ($/MWh)", {"24h": "1D", "7d": "7D"}, aggs=["mean", "std", "max"])
+    df = add_rolling_features(df, "Demand (MW)",   {"24h": "1D", "7d": "7D"}, aggs=["mean", "max"])
+
     # df = add_calendar_features(df)    # added once that function exists
     # df = add_price_classification(df) # added once that function exists
     # ... etc
