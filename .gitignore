@@ -17,3 +17,6 @@ data/processed/
 
 #csv files
 *.csv
+
+#git log
+data/cron.log
