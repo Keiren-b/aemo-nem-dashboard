@@ -25,11 +25,13 @@ def load_data() -> pd.DataFrame:
 
 df_full = load_data()
 
-# Define variables
+# Define filter variables
 SPIKE_THRESHOLD = 300
 ALL_STATES = df_full["State"].unique()
 MAX_PRICE = max(df_full["Price ($/MWh)"])
 MIN_PRICE = min(df_full["Price ($/MWh)"])
+
+
 
 #---Sidebar-------------------------------------------
 
@@ -85,40 +87,48 @@ st.caption(
 
 #--Tabs-------------------------------------------------------
 
+def compute_aggs(df: pd.DataFrame) -> dict:
+    return {
+        "5 Min": (
+            df.groupby(["Settlement Date", "Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            .mean()
+            .reset_index()
+        ),
+        "1 Hour": (
+            df.groupby(["Date", "Hour of Day", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            .mean()
+            .reset_index()
+        ),
+        "1 Day": (
+            df.groupby(["Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            .mean()
+            .reset_index()
+        ),
+        "1 Month": (
+            df.groupby(["Month Start", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            .mean()
+            .reset_index()
+        ),
+    }
+
+AGG_X_COL = {
+    "5 Min": "Settlement Date",
+    "1 Hour": "Date",
+    "1 Day": "Date",
+    "1 Month": "Month Start",
+}
+
+aggs = compute_aggs(df)
+
 tab_price, tab_demand, tab_patterns, tab_spikes = st.tabs(
     ["📈 Price Trends", "⚡ Demand Trends", "🕐 Daily & Seasonal Patterns", "🚨 Price Spikes"]
 )
-with tab_price:
-    if selected_agg == "5 Min":
-        price = (
-            df.groupby(["Settlement Date", "Date", "State"], observed=True)["Price ($/MWh)"]
-            .mean()
-            .reset_index()
-        )
-    elif selected_agg == "1 Hour":
-        price = (
-            df.groupby(["Date", "Hour of Day", "State"], observed=True)["Price ($/MWh)"]
-            .mean()
-            .reset_index()
-        )
-    elif selected_agg == "1 Day":
-        price = (
-            df.groupby(["Date", "State"], observed=True)["Price ($/MWh)"]
-            .mean()
-            .reset_index()
-        )
-    elif selected_agg == "1 Month":
-        price = (
-            df.groupby([df["Settlement Date"].dt.to_period("M").rename("Month"), "State"], observed=True)["Price ($/MWh)"]
-            .mean()
-            .reset_index()
-        )
-        price["Date"] = price["Month"].dt.to_timestamp()
 
-    x_col = "Settlement Date" if selected_agg == "5 Min" else "Date"
+with tab_price:
+
     fig = px.line(
-        price,
-        x=x_col,
+        aggs[selected_agg],
+        x=AGG_X_COL[selected_agg],
         y="Price ($/MWh)",
         color="State",
         title="Average Price by Region",
@@ -129,7 +139,7 @@ with tab_price:
         width=800,
     )
     if separate_plot:
-        n = price["State"].nunique()
+        n = aggs[selected_agg]["State"].nunique()
         fig.for_each_annotation(lambda a: a.update(
             text=a.text.split("=")[-1],
             x=0.5,
@@ -146,47 +156,20 @@ with tab_price:
     st.plotly_chart(fig, use_container_width=True, key="price_chart")
 
 with tab_demand:
-    if selected_agg == "5 Min":
-        price = (
-            df.groupby(["Settlement Date", "Date", "State"], observed=True)["Demand (MW)"]
-            .mean()
-            .reset_index()
-        )
-    elif selected_agg == "1 Hour":
-        price = (
-            df.groupby(["Date", "Hour of Day", "State"], observed=True)["Demand (MW)"]
-            .mean()
-            .reset_index()
-        )
-    elif selected_agg == "1 Day":
-        price = (
-            df.groupby(["Date", "State"], observed=True)["Demand (MW)"]
-            .mean()
-            .reset_index()
-        )
-    elif selected_agg == "1 Month":
-        price = (
-            df.groupby([df["Settlement Date"].dt.to_period("M").rename("Month"), "State"], observed=True)["Demand (MW)"]
-            .mean()
-            .reset_index()
-        )
-        price["Date"] = price["Month"].dt.to_timestamp()
-
-    x_col = "Settlement Date" if selected_agg == "5 Min" else "Date"
     fig = px.line(
-        price,
-        x=x_col,
+        aggs[selected_agg],
+        x=AGG_X_COL[selected_agg],
         y="Demand (MW)",
         color="State",
         title="Average Price by Region",
-        labels={"Demand (MW)": "Avg Demand (MW)"},
+        labels={"Demand (MW)": "Avg Demand (MW)", "Date":"Date"},
         facet_row="State" if separate_plot else None,
         facet_row_spacing=0.09,
         height=1200 if separate_plot else 600,
         width=800,
     )
     if separate_plot:
-        n = price["State"].nunique()
+        n = aggs[selected_agg]["State"].nunique()
         fig.for_each_annotation(lambda a: a.update(
             text=a.text.split("=")[-1],
             x=0.5,
@@ -201,3 +184,38 @@ with tab_demand:
                      showticklabels=True)
 
     st.plotly_chart(fig, use_container_width=True, key="demand_chart")
+
+#     with col_right:
+#         seasonal = (
+#             df.groupby(["Season", "State"], observed=True)["Price ($/MWh)"]
+#             .mean()
+#             .reset_index()
+#         )
+#         fig = px.bar(
+#             seasonal,
+#             x="Season",
+#             y="Price ($/MWh)",
+#             color="State",
+#             barmode="group",
+#             category_orders={"Season": ["Summer", "Autumn", "Winter", "Spring"]},
+#             title="Average Price by Season",
+#             labels={"Price ($/MWh)": "Avg Price ($/MWh)"},
+#         )
+#         st.plotly_chart(fig, use_container_width=True)
+
+#     monthly = (
+#         df.groupby(["Month", "Month Name", "State"], observed=True)["Price ($/MWh)"]
+#         .mean()
+#         .reset_index()
+#         .sort_values("Month")
+#     )
+#     fig = px.line(
+#         monthly,
+#         x="Month Name",
+#         y="Price ($/MWh)",
+#         color="State",
+#         title="Average Price by Month",
+#         labels={"Price ($/MWh)": "Avg Price ($/MWh)", "Month Name": "Month"},
+#         markers=True,
+#     )
+#     st.plotly_chart(fig, use_container_width=True)

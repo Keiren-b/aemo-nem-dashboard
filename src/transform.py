@@ -88,6 +88,7 @@ def date_features(df: pd.DataFrame) -> pd.DataFrame:
     df["Day Name"] = df["Settlement Date"].dt.day_name()
     df["Weekday"] = df["Settlement Date"].dt.weekday
     df["Month"] = df["Settlement Date"].dt.month
+    df["Month Start"] = df["Settlement Date"].dt.to_period("M").dt.to_timestamp()
     df["Month Name"] = df["Settlement Date"].dt.month_name()
     df["Month End"] = df["Settlement Date"].dt.is_month_end
     df["Quarter"] = df["Settlement Date"].dt.quarter
