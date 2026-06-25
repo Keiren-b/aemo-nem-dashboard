@@ -185,37 +185,82 @@ with tab_demand:
 
     st.plotly_chart(fig, use_container_width=True, key="demand_chart")
 
-#     with col_right:
-#         seasonal = (
-#             df.groupby(["Season", "State"], observed=True)["Price ($/MWh)"]
-#             .mean()
-#             .reset_index()
-#         )
-#         fig = px.bar(
-#             seasonal,
-#             x="Season",
-#             y="Price ($/MWh)",
-#             color="State",
-#             barmode="group",
-#             category_orders={"Season": ["Summer", "Autumn", "Winter", "Spring"]},
-#             title="Average Price by Season",
-#             labels={"Price ($/MWh)": "Avg Price ($/MWh)"},
-#         )
-#         st.plotly_chart(fig, use_container_width=True)
+with tab_patterns:
+    col_left, col_right = st.columns(2)
 
-#     monthly = (
-#         df.groupby(["Month", "Month Name", "State"], observed=True)["Price ($/MWh)"]
-#         .mean()
-#         .reset_index()
-#         .sort_values("Month")
-#     )
-#     fig = px.line(
-#         monthly,
-#         x="Month Name",
-#         y="Price ($/MWh)",
-#         color="State",
-#         title="Average Price by Month",
-#         labels={"Price ($/MWh)": "Avg Price ($/MWh)", "Month Name": "Month"},
-#         markers=True,
-#     )
-#     st.plotly_chart(fig, use_container_width=True)
+    with col_left:
+        hourly = (
+            df.groupby(["Hour of Day", "State"], observed=True)["Price ($/MWh)"]
+            .mean()
+            .reset_index()
+        )
+
+        fig = px.line(
+            hourly,
+            x="Hour of Day",
+            y="Price ($/MWh)",
+            color="State",
+            title="Average Price by Hour of Day",
+            labels={"Price ($/MWh)": "Avg Price ($/MWh)"},
+        )
+        fig.update_xaxes(tickmode="linear", dtick=2)
+        st.plotly_chart(fig, use_container_width=True)
+
+    with col_right:
+        seasonal = (
+            df.groupby(["Season", "State"], observed=True)["Price ($/MWh)"]
+            .mean()
+            .reset_index()
+        )
+        fig = px.bar(
+            seasonal,
+            x="Season",
+            y="Price ($/MWh)",
+            color="State",
+            barmode="group",
+            category_orders={"Season": ["Summer", "Autumn", "Winter", "Spring"]},
+            title="Average Price by Season",
+            labels={"Price ($/MWh)": "Avg Price ($/MWh)"},
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+    monthly = (
+        df.groupby(["Month", "Month Name", "State"], observed=True)["Price ($/MWh)"]
+        .mean()
+        .reset_index()
+        .sort_values("Month")
+    )
+    fig = px.line(
+        monthly,
+        x="Month Name",
+        y="Price ($/MWh)",
+        color="State",
+        title="Average Price by Month",
+        labels={"Price ($/MWh)": "Avg Price ($/MWh)", "Month Name": "Month"},
+        markers=True,
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+with tab_spikes:
+    spikes = df[df["Is Spike"]]
+
+    spike_counts = spikes.groupby("State", observed=True).size().reset_index(name="Spike Count")
+    fig = px.bar(
+        spike_counts,
+        x="State",
+        y="Spike Count",
+        color="State",
+        title=f"Price Spike Count by Region (> ${spike_threshold}/MWh)",
+        text_auto=True,
+    )
+    fig.update_layout(showlegend=False)
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.subheader(f"Spike Events — {len(spikes):,} intervals above ${spike_threshold}/MWh")
+    display_cols = ["Settlement Date", "State", "Price ($/MWh)", "Demand (MW)", "Season", "Hour of Day"]
+    st.dataframe(
+        spikes[display_cols]
+        .sort_values("Price ($/MWh)", ascending=False)
+        .reset_index(drop=True),
+        use_container_width=True,
+    )
