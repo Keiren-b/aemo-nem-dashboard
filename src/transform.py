@@ -22,6 +22,18 @@ def rename_cols(df: pd.DataFrame) -> pd.DataFrame:
     }
     return df.rename(columns=names)
 
+def fix_state_names(df:pd.DataFrame) -> pd.DataFrame:
+    """Rename State abbreviations eg from NSW1 to NSW"""
+    df = df.copy()
+    df["State"] = df["State"].map({
+        "NSW1": "NSW",
+        "VIC1": "VIC",
+        "TAS1": "TAS",
+        "SA1": "SA",
+        "QLD1": "QLD"
+    })
+    return df
+
 def drop_redundant_cols(df: pd.DataFrame) -> pd.DataFrame:
     """Drops redundant columns"""
     return df.drop(columns="PERIODTYPE")
@@ -123,6 +135,7 @@ def run() -> pd.DataFrame:
     """Run the full cleaning pipeline and write the clean dataset to disk."""
     df = pd.read_parquet(HISTORICAL_RAW)
     df = rename_cols(df)
+    df = fix_state_names(df)
     df = drop_redundant_cols(df)
     df = standardise_timezone(df)
     df = flag_missing_time_intervals(df)
