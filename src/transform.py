@@ -135,6 +135,7 @@ def run() -> pd.DataFrame:
     """Run the full cleaning pipeline and write the clean dataset to disk."""
     df = pd.read_parquet(HISTORICAL_RAW)
     df = rename_cols(df)
+    df = fix_state_names(df)
     df = drop_redundant_cols(df)
     df = standardise_timezone(df)
     df = flag_missing_time_intervals(df)
