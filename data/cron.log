@@ -8746,3 +8746,324 @@ REGIONID     PRICE  TOTALDEMAND
      SA1 104.61482      1293.19
     TAS1  79.24000      1161.98
     VIC1 122.67000      7035.27
+2026-06-25 12:00:04,266 INFO Saved raw response -> nem_summary_20260625T020004Z.json
+2026-06-25 12:00:04,406 INFO Store now holds 35 rows
+2026-06-25 12:00:04,410 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 123.12774     10279.05
+    QLD1  39.75000      6044.24
+     SA1 104.30198      1264.59
+    TAS1  79.24000      1164.00
+    VIC1 122.67000      6966.60
+2026-06-25 12:05:04,036 INFO Saved raw response -> nem_summary_20260625T020504Z.json
+2026-06-25 12:05:04,141 INFO Store now holds 40 rows
+2026-06-25 12:05:04,146 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 124.30000     10219.28
+    QLD1  28.83000      5998.04
+     SA1 108.76097      1317.62
+    TAS1  80.17000      1161.28
+    VIC1 123.69728      6832.46
+2026-06-25 12:10:04,298 INFO Saved raw response -> nem_summary_20260625T021004Z.json
+2026-06-25 12:10:04,638 INFO Store now holds 45 rows
+2026-06-25 12:10:04,660 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 138.00000     10161.44
+    QLD1  40.09000      6027.41
+     SA1 117.89108      1307.24
+    TAS1  80.17000      1158.37
+    VIC1 137.15223      6835.12
+2026-06-25 12:15:03,536 INFO Saved raw response -> nem_summary_20260625T021503Z.json
+2026-06-25 12:15:03,655 INFO Store now holds 50 rows
+2026-06-25 12:15:03,659 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 124.30000     10147.16
+    QLD1  44.46000      6072.52
+     SA1 106.85246      1343.18
+    TAS1  80.17000      1160.70
+    VIC1 124.40894      6792.73
+2026-06-25 12:20:03,468 INFO Saved raw response -> nem_summary_20260625T022003Z.json
+2026-06-25 12:20:03,687 INFO Store now holds 55 rows
+2026-06-25 12:20:03,694 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 123.57771     10132.94
+    QLD1  44.46000      6091.71
+     SA1 105.52060      1272.83
+    TAS1  80.44656      1160.37
+    VIC1 122.67000      6841.34
+2026-06-25 12:25:04,116 INFO Saved raw response -> nem_summary_20260625T022504Z.json
+2026-06-25 12:25:04,388 INFO Store now holds 60 rows
+2026-06-25 12:25:04,395 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 136.36435      9921.06
+    QLD1  27.73000      6125.28
+     SA1  99.00000      1261.28
+    TAS1  80.17000      1153.38
+    VIC1 141.78000      6770.41
+2026-06-25 12:30:04,097 INFO Saved raw response -> nem_summary_20260625T023004Z.json
+2026-06-25 12:30:04,346 INFO Store now holds 65 rows
+2026-06-25 12:30:04,351 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 116.09766     10147.80
+    QLD1  40.09000      6186.54
+     SA1 101.00000      1287.40
+    TAS1  80.17000      1149.85
+    VIC1 122.67000      6837.11
+2026-06-25 12:35:03,372 INFO Saved raw response -> nem_summary_20260625T023503Z.json
+2026-06-25 12:35:03,488 INFO Store now holds 70 rows
+2026-06-25 12:35:03,492 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 115.45523     10221.04
+    QLD1  44.46000      6101.29
+     SA1  99.00000      1337.28
+    TAS1  80.17000      1146.74
+    VIC1 122.67000      6823.12
+2026-06-25 12:40:04,513 INFO Saved raw response -> nem_summary_20260625T024004Z.json
+2026-06-25 12:40:04,756 INFO Store now holds 75 rows
+2026-06-25 12:40:04,760 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 115.32083     10199.62
+    QLD1  67.23000      6199.77
+     SA1  98.36595      1356.15
+    TAS1  80.17000      1146.37
+    VIC1 122.67000      6758.32
+2026-06-25 12:45:05,028 INFO Saved raw response -> nem_summary_20260625T024505Z.json
+2026-06-25 12:45:05,224 INFO Store now holds 80 rows
+2026-06-25 12:45:05,229 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 115.51121     10053.07
+    QLD1  70.00000      6175.64
+     SA1  98.42335      1272.51
+    TAS1  80.17000      1142.11
+    VIC1 122.67000      6875.48
+2026-06-25 12:50:04,418 INFO Saved raw response -> nem_summary_20260625T025004Z.json
+2026-06-25 12:50:04,615 INFO Store now holds 85 rows
+2026-06-25 12:50:04,621 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 153.01000      9858.05
+    QLD1  44.44000      6100.23
+     SA1  86.44000      1249.14
+    TAS1  83.13227      1141.04
+    VIC1 154.58095      6718.97
+2026-06-25 12:55:05,098 INFO Saved raw response -> nem_summary_20260625T025505Z.json
+2026-06-25 12:55:05,336 INFO Store now holds 90 rows
+2026-06-25 12:55:05,342 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 117.70998      9550.40
+    QLD1  70.00000      6123.45
+     SA1 101.00000      1257.55
+    TAS1  80.17000      1144.45
+    VIC1 126.22262      6896.09
+2026-06-25 13:00:03,853 INFO Saved raw response -> nem_summary_20260625T030003Z.json
+2026-06-25 13:00:04,072 INFO Store now holds 95 rows
+2026-06-25 13:00:04,077 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 132.77362      9762.10
+    QLD1  70.00000      6100.70
+     SA1 110.44000      1174.79
+    TAS1  80.17000      1139.16
+    VIC1 135.20833      6821.26
+2026-06-25 13:05:04,208 INFO Saved raw response -> nem_summary_20260625T030504Z.json
+2026-06-25 13:05:04,352 INFO Store now holds 100 rows
+2026-06-25 13:05:04,356 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 122.25538      9808.85
+    QLD1  53.75000      6241.45
+     SA1 109.01665      1264.26
+    TAS1  80.17000      1136.91
+    VIC1 122.67000      6585.18
+2026-06-25 13:10:04,132 INFO Saved raw response -> nem_summary_20260625T031004Z.json
+2026-06-25 13:10:04,455 INFO Store now holds 105 rows
+2026-06-25 13:10:04,461 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 115.18005      9890.66
+    QLD1  55.73000      6333.25
+     SA1 100.84000      1303.38
+    TAS1  80.17000      1137.61
+    VIC1 111.93954      6698.08
+2026-06-25 13:15:04,323 INFO Saved raw response -> nem_summary_20260625T031504Z.json
+2026-06-25 13:15:04,463 INFO Store now holds 110 rows
+2026-06-25 13:15:04,470 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 124.37068      9879.63
+    QLD1  67.23000      6394.55
+     SA1 109.40002      1285.91
+    TAS1  80.17000      1139.01
+    VIC1 122.67000      6736.26
+2026-06-25 13:20:03,639 INFO Saved raw response -> nem_summary_20260625T032003Z.json
+2026-06-25 13:20:03,794 INFO Store now holds 115 rows
+2026-06-25 13:20:03,802 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 115.22344      9759.68
+    QLD1  70.30000      6209.37
+     SA1 100.84000      1291.14
+    TAS1  80.17000      1144.14
+    VIC1 114.40200      6801.61
+2026-06-25 13:26:16,548 WARNING Attempt 1 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-25 13:26:16,550 WARNING Attempt 2 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-25 13:26:16,551 WARNING Attempt 3 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 88, in <module>
+    main()
+    ~~~~^^
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 80, in main
+    payload = fetch_raw()
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 33, in fetch_raw
+    raise RuntimeError("Could not fetch endpoint after 3 attempts")
+RuntimeError: Could not fetch endpoint after 3 attempts
+2026-06-25 14:00:03,818 INFO Saved raw response -> nem_summary_20260625T040003Z.json
+2026-06-25 14:00:03,953 INFO Store now holds 120 rows
+2026-06-25 14:00:03,959 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 124.30000     10028.49
+    QLD1  93.83004      6466.53
+     SA1 110.44000      1205.15
+    TAS1  80.17000      1151.08
+    VIC1 125.93084      6521.74
+2026-06-25 14:05:04,031 INFO Saved raw response -> nem_summary_20260625T040504Z.json
+2026-06-25 14:05:04,134 INFO Store now holds 125 rows
+2026-06-25 14:05:04,138 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 115.17982      9839.05
+    QLD1  93.71106      6500.24
+     SA1 104.85578      1203.17
+    TAS1  80.17000      1153.05
+    VIC1 119.50137      6566.86
+2026-06-25 14:10:03,934 INFO Saved raw response -> nem_summary_20260625T041003Z.json
+2026-06-25 14:10:04,038 INFO Store now holds 130 rows
+2026-06-25 14:10:04,042 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 105.81095      9482.71
+    QLD1  99.83173      6426.08
+     SA1 100.84000      1236.16
+    TAS1  80.17000      1157.70
+    VIC1 111.79665      6459.23
+2026-06-25 14:15:03,988 INFO Saved raw response -> nem_summary_20260625T041503Z.json
+2026-06-25 14:15:04,104 INFO Store now holds 135 rows
+2026-06-25 14:15:04,109 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 120.00000      9817.68
+    QLD1 101.31303      6434.80
+     SA1 105.98689      1208.72
+    TAS1  80.17000      1157.27
+    VIC1 123.78645      6568.11
+2026-06-25 14:20:04,410 INFO Saved raw response -> nem_summary_20260625T042004Z.json
+2026-06-25 14:20:04,614 INFO Store now holds 140 rows
+2026-06-25 14:20:04,619 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 107.66750      9663.50
+    QLD1  93.83012      6429.87
+     SA1 100.84000      1263.15
+    TAS1  80.17000      1154.91
+    VIC1 111.40341      6384.85
+2026-06-25 14:33:57,278 WARNING Attempt 1 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-25 14:33:57,280 WARNING Attempt 2 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-25 14:33:57,282 WARNING Attempt 3 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 88, in <module>
+    main()
+    ~~~~^^
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 80, in main
+    payload = fetch_raw()
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 33, in fetch_raw
+    raise RuntimeError("Could not fetch endpoint after 3 attempts")
+RuntimeError: Could not fetch endpoint after 3 attempts
+2026-06-25 15:40:04,333 INFO Saved raw response -> nem_summary_20260625T054004Z.json
+2026-06-25 15:40:04,533 INFO Store now holds 145 rows
+2026-06-25 15:40:04,538 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 162.51413     10131.80
+    QLD1 131.72000      6918.47
+     SA1 130.44000      1299.80
+    TAS1  80.17000      1206.32
+    VIC1 152.02781      6068.38
+2026-06-25 15:45:04,204 INFO Saved raw response -> nem_summary_20260625T054504Z.json
+2026-06-25 15:45:04,306 INFO Store now holds 150 rows
+2026-06-25 15:45:04,309 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 199.99000     10221.94
+    QLD1 171.49000      6878.47
+     SA1 101.02000      1281.92
+    TAS1  91.46667      1223.13
+    VIC1 184.37330      6109.38
+2026-06-25 15:50:04,377 INFO Saved raw response -> nem_summary_20260625T055004Z.json
+2026-06-25 15:50:04,513 INFO Store now holds 155 rows
+2026-06-25 15:50:04,517 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 142.08358      9683.36
+    QLD1 119.51000      6854.69
+     SA1 129.47000      1408.28
+    TAS1  80.17000      1223.79
+    VIC1 140.61554      6241.09
+2026-06-25 15:55:03,920 INFO Saved raw response -> nem_summary_20260625T055503Z.json
+2026-06-25 15:55:04,036 INFO Store now holds 160 rows
+2026-06-25 15:55:04,055 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 184.28764      9821.83
+    QLD1 144.55000      7009.98
+     SA1 168.93019      1418.87
+    TAS1  90.28000      1233.02
+    VIC1 181.00643      6188.41
+2026-06-25 16:00:04,499 INFO Saved raw response -> nem_summary_20260625T060004Z.json
+2026-06-25 16:00:04,623 INFO Store now holds 165 rows
+2026-06-25 16:00:04,630 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 144.77159      9864.03
+    QLD1 139.27449      6982.38
+     SA1 142.02100      1463.27
+    TAS1  80.17000      1248.46
+    VIC1 148.68004      6392.54
+2026-06-25 16:05:03,217 INFO Saved raw response -> nem_summary_20260625T060503Z.json
+2026-06-25 16:05:03,324 INFO Store now holds 170 rows
+2026-06-25 16:05:03,328 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 159.77522     10055.28
+    QLD1 143.76844      6969.42
+     SA1 156.56000      1441.46
+    TAS1  90.28000      1251.63
+    VIC1 163.02796      6500.74
+2026-06-25 16:10:04,259 INFO Saved raw response -> nem_summary_20260625T061004Z.json
+2026-06-25 16:10:04,376 INFO Store now holds 175 rows
+2026-06-25 16:10:04,380 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 179.76152     10101.80
+    QLD1 165.48427      6984.13
+     SA1 170.44000      1408.88
+    TAS1  91.15397      1253.08
+    VIC1 181.93910      6610.84
+2026-06-25 16:15:04,047 INFO Saved raw response -> nem_summary_20260625T061504Z.json
+2026-06-25 16:15:04,421 INFO Store now holds 180 rows
+2026-06-25 16:15:04,442 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 164.00000     10102.56
+    QLD1 127.70000      7010.98
+     SA1 164.18338      1449.00
+    TAS1  91.15397      1263.37
+    VIC1 172.85879      6726.70
+2026-06-25 16:20:03,830 INFO Saved raw response -> nem_summary_20260625T062003Z.json
+2026-06-25 16:20:04,002 INFO Store now holds 185 rows
+2026-06-25 16:20:04,007 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 164.00000     10114.66
+    QLD1 127.70000      7066.00
+     SA1 170.43025      1472.28
+    TAS1  91.15397      1275.58
+    VIC1 174.26480      6782.62
+2026-06-25 16:25:04,121 INFO Saved raw response -> nem_summary_20260625T062504Z.json
+2026-06-25 16:25:04,314 INFO Store now holds 190 rows
+2026-06-25 16:25:04,319 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 177.00625     10093.05
+    QLD1 171.49000      7144.21
+     SA1 179.39877      1516.13
+    TAS1  91.15397      1285.66
+    VIC1 185.68376      6795.86
+2026-06-25 16:30:04,160 INFO Saved raw response -> nem_summary_20260625T063004Z.json
+2026-06-25 16:30:04,269 INFO Store now holds 195 rows
+2026-06-25 16:30:04,274 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 186.15757     10193.75
+    QLD1 171.49000      7107.11
+     SA1 184.48576      1566.69
+    TAS1  91.15397      1292.47
+    VIC1 191.40000      6800.88
