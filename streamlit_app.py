@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.express as px
 from config import PROCESSED_DIR
 import transform
+import requests
 
 # streamlit page config
 st.set_page_config(
@@ -94,7 +95,31 @@ st.caption(
 
 #--KPIS-------------------------------------------------------
 
+@st.cache_data(ttl=300)
+def fetch_live_prices() -> dict:
+    headers = {"User-Agent": "aemo-portfolio-project/1.0 (learning)"}
+    r = requests.get(
+        "https://visualisations.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY",
+        headers=headers,
+        timeout=15,
+    )
+    
+    r.raise_for_status()
+    rows = r.json()["ELEC_NEM_SUMMARY"]
+    # st.dataframe(rows)
+    return {row["REGIONID"]: row["PRICE"] for row in rows}
 
+live_prices = fetch_live_prices()
+# st.dataframe(live_prices, use_container_width=True)
+
+kpi_cols = st.columns(len(ALL_STATES))
+for col, state in zip(kpi_cols, ALL_STATES):
+    price = live_prices.get(state)
+    # st.dataframe(price)
+    col.metric(state.replace("1", ""), f"${price:.0f}/MWh" if price else "—")
+
+
+st.divider()
 
 #--Tabs-------------------------------------------------------
 
