@@ -31,7 +31,13 @@ ALL_STATES = df_full["State"].unique()
 MAX_PRICE = max(df_full["Price ($/MWh)"])
 MIN_PRICE = min(df_full["Price ($/MWh)"])
 
+TAB_LABELS = ["📈 Price Trends", "⚡ Demand Trends", "🕐 Daily & Seasonal Patterns", "🚨 Price Spikes"]
+TREND_TABS = {"📈 Price Trends", "⚡ Demand Trends"}
 
+if "active_tab" not in st.session_state:
+    st.session_state["active_tab"] = TAB_LABELS[0]
+
+is_trend_tab = st.session_state["active_tab"] in TREND_TABS
 
 #---Sidebar-------------------------------------------
 
@@ -39,10 +45,15 @@ st.sidebar.header("Filters", divider=True)
 
 selected_states = st.sidebar.multiselect("Select which States you want to see data for:", options=ALL_STATES, default=ALL_STATES)
 
-separate_plot = st.sidebar.toggle("Select to place each state's graph on a separate plot", value = False)
+separate_plot = st.sidebar.toggle("Select to place each state's graph on a separate plot", value=False, key="sep_plot", disabled=not is_trend_tab)
 st.sidebar.divider()
 
-selected_agg = st.sidebar.segmented_control("Select which time aggregation you want",["5 Min", "1 Hour", "1 Day", "1 Month"], selection_mode="single", required=True, default="5 Min")
+selected_agg = st.sidebar.segmented_control("Select which time aggregation you want", ["5 Min", "1 Hour", "1 Day", "1 Month"],
+                                            selection_mode="single",
+                                            required=True,
+                                            default="5 Min",
+                                            key="time_agg_selector",
+                                            disabled=not is_trend_tab)
 
 st.sidebar.divider()
 
@@ -87,6 +98,7 @@ st.caption(
 
 #--Tabs-------------------------------------------------------
 
+@st.cache_data
 def compute_aggs(df: pd.DataFrame) -> dict:
     return {
         "5 Min": (
@@ -121,7 +133,7 @@ AGG_X_COL = {
 aggs = compute_aggs(df)
 
 tab_price, tab_demand, tab_patterns, tab_spikes = st.tabs(
-    ["📈 Price Trends", "⚡ Demand Trends", "🕐 Daily & Seasonal Patterns", "🚨 Price Spikes"]
+    TAB_LABELS, key="active_tab", on_change="rerun"
 )
 
 with tab_price:
@@ -224,22 +236,6 @@ with tab_patterns:
         )
         st.plotly_chart(fig, use_container_width=True)
 
-    monthly = (
-        df.groupby(["Month", "Month Name", "State"], observed=True)["Price ($/MWh)"]
-        .mean()
-        .reset_index()
-        .sort_values("Month")
-    )
-    fig = px.line(
-        monthly,
-        x="Month Name",
-        y="Price ($/MWh)",
-        color="State",
-        title="Average Price by Month",
-        labels={"Price ($/MWh)": "Avg Price ($/MWh)", "Month Name": "Month"},
-        markers=True,
-    )
-    st.plotly_chart(fig, use_container_width=True)
 
 with tab_spikes:
     spikes = df[df["Is Spike"]]
