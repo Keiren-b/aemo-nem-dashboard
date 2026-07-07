@@ -53,7 +53,7 @@ st.sidebar.divider()
 selected_agg = st.sidebar.segmented_control("Select which time aggregation you want", ["5 Min", "1 Hour", "1 Day", "1 Month"],
                                             selection_mode="single",
                                             required=True,
-                                            default="5 Min",
+                                            default="1 Month",
                                             key="time_agg_selector",
                                             disabled=not is_trend_tab)
 
