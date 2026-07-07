@@ -9,6 +9,7 @@ import plotly.express as px
 from config import PROCESSED_DIR
 import transform
 import requests
+import logging as log
 
 # streamlit page config
 st.set_page_config(
@@ -95,31 +96,56 @@ st.caption(
 
 #--KPIS-------------------------------------------------------
 
+kpi_cols = st.columns(len(ALL_STATES))
+
 @st.cache_data(ttl=300)
 def fetch_live_prices() -> dict:
     headers = {"User-Agent": "aemo-portfolio-project/1.0 (learning)"}
-    r = requests.get(
-        "https://visualisations.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY",
-        headers=headers,
-        timeout=15,
-    )
-    
-    r.raise_for_status()
-    rows = r.json()["ELEC_NEM_SUMMARY"]
-    # st.dataframe(rows)
-    return {row["REGIONID"]: row["PRICE"] for row in rows}
+    for attempt in range(3):
+        try:
+            resp = requests.get("https://visualisations.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY",
+                                headers=headers, 
+                                timeout=15)
+            resp.raise_for_status()
+            return resp.json()
+        except requests.RequestException as e:
+            log.warning("Attempt %d failed: %s", attempt + 1, e)
+    raise RuntimeError("Could not fetch endpoint after 3 attempts")
 
-live_prices = fetch_live_prices()
-# st.dataframe(live_prices, use_container_width=True)
+live_data_raw = fetch_live_prices()
+live_data_raw = live_data_raw["ELEC_NEM_SUMMARY"]
+live_data_raw = pd.DataFrame(live_data_raw)
 
-kpi_cols = st.columns(len(ALL_STATES))
-for col, state in zip(kpi_cols, ALL_STATES):
-    price = live_prices.get(state)
-    # st.dataframe(price)
-    col.metric(state.replace("1", ""), f"${price:.0f}/MWh" if price else "—")
+keep = [
+        "SETTLEMENTDATE", "REGIONID", "PRICE", "PRICE_STATUS",
+        "TOTALDEMAND", "NETINTERCHANGE",
+        "SCHEDULEDGENERATION", "SEMISCHEDULEDGENERATION",
+    ]
+
+numeric = ["PRICE", "TOTALDEMAND", "NETINTERCHANGE",
+            "SCHEDULEDGENERATION", "SEMISCHEDULEDGENERATION"]
+
+live_data = live_data_raw[keep]
+live_data[numeric] = live_data[numeric].apply(pd.to_numeric, errors="coerce")
+
+live_data["REGIONID"] = live_data["REGIONID"].map({
+    "NSW1": "NSW",
+    "VIC1": "VIC",
+    "TAS1": "TAS",
+    "SA1": "SA",
+    "QLD1": "QLD"
+})
+
+for state in ALL_STATES:
+    state_data = live_data[live_data["REGIONID"] == state]
+
+for num, state in enumerate(ALL_STATES):
+    state_data = live_data[live_data["REGIONID"] == state]
+    kpi_cols[num].metric(label=state, value=f"${state_data['PRICE'].iloc[0]:,.2f}")
 
 
 st.divider()
+
 
 #--Tabs-------------------------------------------------------
 
