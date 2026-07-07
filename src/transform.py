@@ -130,6 +130,26 @@ def add_rolling_features(df: pd.DataFrame, col: str, windows: dict[str, str], ag
             df[f"Rolling {suffix} {agg.title()} {col}"] = rolled
     return df
 
+def add_national_rolling_features(df: pd.DataFrame, col: str, windows: dict[str, str], aggs: list[str] = ("mean",),) -> pd.DataFrame:
+    """calculates a range of rolling statistics nationally over different time periods"""
+    df = df.sort_values(["Settlement Date", "State"]).reset_index(drop=True)
+
+    national = (
+        df.groupby("Settlement Date", observed=True)[col]
+        .mean()
+        .reset_index()
+        .sort_values("Settlement Date")
+    )
+
+    for suffix, window in windows.items():
+        for agg in aggs:
+            rolled = national.rolling(window, on="Settlement Date")[col].agg(agg)
+            national[f"National Rolling {suffix} {agg.title()} {col}"] = rolled
+
+    new_cols = [c for c in national.columns if c.startswith("National Rolling")]
+    df = df.merge(national[["Settlement Date"] + new_cols], on="Settlement Date", how="left")
+    return df
+
 # ---- Orchestration ----------------------------------------------------------
 
 def run() -> pd.DataFrame:
@@ -144,6 +164,7 @@ def run() -> pd.DataFrame:
     df = spike(df)
     df = add_rolling_features(df, "Price ($/MWh)", {"24h": "1D", "7d": "7D", "30d": "30D", "90d":"90D"}, aggs=["mean", "std", "max"])
     df = add_rolling_features(df, "Demand (MW)",   {"24h": "1D", "7d": "7D", "30d":"30D", "90d":"90D"}, aggs=["mean", "max"])
+    df = add_national_rolling_features(df, "Price ($/MWh)",   {"24h": "1D", "7d": "7D", "30d":"30D", "90d":"90D"}, aggs=["mean", "max"])
 
     # df = add_calendar_features(df)    # added once that function exists
     # df = add_price_classification(df) # added once that function exists

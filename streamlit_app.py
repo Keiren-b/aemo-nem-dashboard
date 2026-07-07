@@ -195,7 +195,7 @@ tab_price, tab_demand, tab_patterns, tab_spikes = st.tabs(
 )
 
 with tab_price:
-
+    st.dataframe(df.head())
     fig = px.line(
         aggs[selected_agg],
         x=AGG_X_COL[selected_agg],
