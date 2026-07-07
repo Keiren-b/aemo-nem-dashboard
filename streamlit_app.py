@@ -57,6 +57,13 @@ selected_agg = st.sidebar.segmented_control("Select which time aggregation you w
                                             key="time_agg_selector",
                                             disabled=not is_trend_tab)
 
+selected_smooth = st.sidebar.segmented_control("Select which smoothing you want", ["1 Day", "7 Days", "30 Days", "90 Days"],
+                                            selection_mode="single",
+                                            required=False,
+                                            default=None,
+                                            key="smoothselector",
+                                            disabled=not is_trend_tab)
+
 st.sidebar.divider()
 
 min_date = df_full["Settlement Date"].dt.date.min()
