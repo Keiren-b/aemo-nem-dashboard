@@ -263,7 +263,7 @@ with tab_price:
             name = "smoothed",
             line = dict(color="white", dash="dash")
         ))
-
+#
     if separate_plot:
         n = aggs[selected_agg]["State"].nunique()
         fig.for_each_annotation(lambda a: a.update(
