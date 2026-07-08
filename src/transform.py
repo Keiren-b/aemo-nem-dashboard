@@ -164,7 +164,7 @@ def run() -> pd.DataFrame:
     df = spike(df)
     df = add_rolling_features(df, "Price ($/MWh)", {"24h": "1D", "7d": "7D", "30d": "30D", "90d":"90D"}, aggs=["mean", "std", "max"])
     df = add_rolling_features(df, "Demand (MW)",   {"24h": "1D", "7d": "7D", "30d":"30D", "90d":"90D"}, aggs=["mean", "max"])
-    df = add_national_rolling_features(df, "Price ($/MWh)",   {"24h": "1D", "7d": "7D", "30d":"30D", "90d":"90D"}, aggs=["mean", "max"])
+    df = add_national_rolling_features(df, "Price ($/MWh)",   {"24h": "1D", "7d": "7D", "30d":"30D", "90d":"90D"}, aggs=["mean"])
 
     # df = add_calendar_features(df)    # added once that function exists
     # df = add_price_classification(df) # added once that function exists

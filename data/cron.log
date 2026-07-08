@@ -10222,3 +10222,87 @@ REGIONID     PRICE  TOTALDEMAND
      SA1 124.26802      1555.74
     TAS1 110.33472      1392.50
     VIC1 121.96159      6986.33
+2026-07-09 06:25:01,817 INFO Saved raw response -> nem_summary_20260708T202501Z.json
+2026-07-09 06:25:01,971 INFO Store now holds 4375 rows
+2026-07-09 06:25:01,975 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 118.95646      8879.68
+    QLD1 105.73000      6734.39
+     SA1 130.44000      1550.72
+    TAS1 116.78351      1402.89
+    VIC1 129.10309      7048.93
+2026-07-09 06:30:01,777 INFO Saved raw response -> nem_summary_20260708T203001Z.json
+2026-07-09 06:30:01,943 INFO Store now holds 4380 rows
+2026-07-09 06:30:01,949 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 122.71378      9028.10
+    QLD1 107.73000      6767.87
+     SA1 138.00000      1571.99
+    TAS1 126.28408      1423.91
+    VIC1 139.17000      7110.10
+2026-07-09 06:35:02,168 INFO Saved raw response -> nem_summary_20260708T203502Z.json
+2026-07-09 06:35:02,370 INFO Store now holds 4385 rows
+2026-07-09 06:35:02,375 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 114.80000      9004.23
+    QLD1 104.14395      6838.49
+     SA1 116.32752      1547.54
+    TAS1 107.19190      1432.91
+    VIC1 118.50724      7139.47
+2026-07-09 06:40:02,545 INFO Saved raw response -> nem_summary_20260708T204002Z.json
+2026-07-09 06:40:02,709 INFO Store now holds 4390 rows
+2026-07-09 06:40:02,712 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 119.37811      9148.02
+    QLD1 107.73000      6939.62
+     SA1 119.48947      1554.63
+    TAS1 110.77279      1443.33
+    VIC1 123.27092      7252.83
+2026-07-09 06:45:01,946 INFO Saved raw response -> nem_summary_20260708T204501Z.json
+2026-07-09 06:45:02,128 INFO Store now holds 4395 rows
+2026-07-09 06:45:02,133 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 120.08340      9294.28
+    QLD1 105.73000      7007.59
+     SA1 138.00000      1571.96
+    TAS1 128.46450      1468.87
+    VIC1 142.51565      7331.37
+2026-07-09 06:50:02,036 INFO Saved raw response -> nem_summary_20260708T205002Z.json
+2026-07-09 06:50:02,259 INFO Store now holds 4400 rows
+2026-07-09 06:50:02,264 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 134.86000      9421.21
+    QLD1 116.53739      7037.49
+     SA1 191.50004      1573.49
+    TAS1 181.64495      1480.30
+    VIC1 200.89000      7390.94
+2026-07-09 06:55:02,494 INFO Saved raw response -> nem_summary_20260708T205502Z.json
+2026-07-09 06:55:02,688 INFO Store now holds 4405 rows
+2026-07-09 06:55:02,693 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 123.89968      9503.61
+    QLD1 107.73000      7018.65
+     SA1 239.30808      1585.30
+    TAS1 232.39289      1487.36
+    VIC1 257.08000      7542.48
+2026-07-09 07:00:02,250 INFO Saved raw response -> nem_summary_20260708T210002Z.json
+2026-07-09 07:00:02,448 INFO Store now holds 4410 rows
+2026-07-09 07:00:02,454 INFO Latest snapshot:
+REGIONID     PRICE  TOTALDEMAND
+    NSW1 116.76164      9483.74
+    QLD1 101.56000      7055.41
+     SA1 215.04000      1579.82
+    TAS1 216.08633      1499.88
+    VIC1 239.05174      7590.98
+2026-07-09 08:15:02,540 WARNING Attempt 1 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-07-09 08:15:02,554 WARNING Attempt 2 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-07-09 08:15:02,559 WARNING Attempt 3 failed: HTTPSConnectionPool(host='visualisations.aemo.com.au', port=443): Max retries exceeded with url: /aemo/apps/api/report/ELEC_NEM_SUMMARY (Caused by NameResolutionError("HTTPSConnection(host='visualisations.aemo.com.au', port=443): Failed to resolve 'visualisations.aemo.com.au' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 88, in <module>
+    main()
+    ~~~~^^
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 80, in main
+    payload = fetch_raw()
+  File "/Users/keirenbrandt-sawdy/portfolio_projects/aemo_dashboard/src/ingest_live.py", line 33, in fetch_raw
+    raise RuntimeError("Could not fetch endpoint after 3 attempts")
+RuntimeError: Could not fetch endpoint after 3 attempts

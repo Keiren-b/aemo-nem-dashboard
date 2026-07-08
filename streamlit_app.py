@@ -161,22 +161,58 @@ st.divider()
 def compute_aggs(df: pd.DataFrame) -> dict:
     return {
         "5 Min": (
-            df.groupby(["Settlement Date", "Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
+            df.groupby(["Settlement Date", "Date", "State"], observed=True)[["Price ($/MWh)",
+                                                                             "Demand (MW)",
+                                                                             "Rolling 24h Mean Price ($/MWh)",
+                                                                             "Rolling 7d Mean Price ($/MWh)",
+                                                                             "Rolling 30d Mean Price ($/MWh)",
+                                                                             "Rolling 90d Mean Price ($/MWh)",
+                                                                             "National Rolling 24h Mean Price ($/MWh)",
+                                                                             "National Rolling 7d Mean Price ($/MWh)",
+                                                                             "National Rolling 30d Mean Price ($/MWh)",
+                                                                             "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
         "1 Hour": (
-            df.groupby(["Date", "Hour of Day", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
+            df.groupby(["Date", "Hour of Day", "State"], observed=True)[["Price ($/MWh)", 
+                                                                        "Demand (MW)",
+                                                                        "Rolling 24h Mean Price ($/MWh)",
+                                                                        "Rolling 7d Mean Price ($/MWh)",
+                                                                        "Rolling 30d Mean Price ($/MWh)",
+                                                                        "Rolling 90d Mean Price ($/MWh)",
+                                                                        "National Rolling 24h Mean Price ($/MWh)",
+                                                                        "National Rolling 7d Mean Price ($/MWh)",
+                                                                        "National Rolling 30d Mean Price ($/MWh)",
+                                                                        "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
         "1 Day": (
-            df.groupby(["Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
+            df.groupby(["Date", "State"], observed=True)[["Price ($/MWh)",
+                                                        "Demand (MW)",
+                                                        "Rolling 24h Mean Price ($/MWh)",
+                                                        "Rolling 7d Mean Price ($/MWh)",
+                                                        "Rolling 30d Mean Price ($/MWh)",
+                                                        "Rolling 90d Mean Price ($/MWh)",
+                                                        "National Rolling 24h Mean Price ($/MWh)",
+                                                        "National Rolling 7d Mean Price ($/MWh)",
+                                                        "National Rolling 30d Mean Price ($/MWh)",
+                                                        "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
         "1 Month": (
-            df.groupby(["Month Start", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
+            df.groupby(["Month Start", "State"], observed=True)[["Price ($/MWh)", 
+                                                                "Demand (MW)",
+                                                                "Rolling 24h Mean Price ($/MWh)",
+                                                                "Rolling 7d Mean Price ($/MWh)",
+                                                                "Rolling 30d Mean Price ($/MWh)",
+                                                                "Rolling 90d Mean Price ($/MWh)",
+                                                                "National Rolling 24h Mean Price ($/MWh)",
+                                                                "National Rolling 7d Mean Price ($/MWh)",
+                                                                "National Rolling 30d Mean Price ($/MWh)",
+                                                                "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
@@ -189,6 +225,13 @@ AGG_X_COL = {
     "1 Month": "Month Start",
 }
 
+SMOOTH_X = {
+    "1 Day": "Rolling 24h Mean Price ($/MWh)",
+    "7 Days": "Rolling 7d Mean Price ($/MWh)",
+    "30 Days": "Rolling 30d Mean Price ($/MWh)",
+    "90 Days": "Rolling 90d Mean Price ($/MWh)"
+}
+
 aggs = compute_aggs(df)
 
 tab_price, tab_demand, tab_patterns, tab_spikes = st.tabs(
@@ -196,6 +239,8 @@ tab_price, tab_demand, tab_patterns, tab_spikes = st.tabs(
 )
 
 with tab_price:
+    st.dataframe(df.head())
+
     fig = px.line(
         aggs[selected_agg],
         x=AGG_X_COL[selected_agg],
@@ -210,13 +255,13 @@ with tab_price:
     )
     if selected_smooth:
         df_smooth = aggs[selected_agg]
-        st.dataframe(df_smooth.head())
+        # st.dataframe(df_smooth.head())
         fig.add_trace(go.Scatter(
             x = df_smooth[AGG_X_COL[selected_agg]],
-            y = df_smooth["National Rolling 90d Mean Price ($/MWh)"],
+            y = df_smooth[f'National {SMOOTH_X[selected_smooth]}'],
             mode = "lines",
             name = "smoothed",
-            line = dict(color="red", dash="dash")
+            line = dict(color="white", dash="dash")
         ))
 
     if separate_plot:
