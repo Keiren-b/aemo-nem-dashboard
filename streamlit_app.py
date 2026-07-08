@@ -6,6 +6,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from config import PROCESSED_DIR
 import transform
 import requests
@@ -160,22 +161,22 @@ st.divider()
 def compute_aggs(df: pd.DataFrame) -> dict:
     return {
         "5 Min": (
-            df.groupby(["Settlement Date", "Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            df.groupby(["Settlement Date", "Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
         "1 Hour": (
-            df.groupby(["Date", "Hour of Day", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            df.groupby(["Date", "Hour of Day", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
         "1 Day": (
-            df.groupby(["Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            df.groupby(["Date", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
         "1 Month": (
-            df.groupby(["Month Start", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)"]]
+            df.groupby(["Month Start", "State"], observed=True)[["Price ($/MWh)", "Demand (MW)", "National Rolling 90d Mean Price ($/MWh)"]]
             .mean()
             .reset_index()
         ),
@@ -195,7 +196,6 @@ tab_price, tab_demand, tab_patterns, tab_spikes = st.tabs(
 )
 
 with tab_price:
-    st.dataframe(df.head())
     fig = px.line(
         aggs[selected_agg],
         x=AGG_X_COL[selected_agg],
@@ -208,6 +208,17 @@ with tab_price:
         height=1200 if separate_plot else 600,
         width=800,
     )
+    if selected_smooth:
+        df_smooth = aggs[selected_agg]
+        st.dataframe(df_smooth.head())
+        fig.add_trace(go.Scatter(
+            x = df_smooth[AGG_X_COL[selected_agg]],
+            y = df_smooth["National Rolling 90d Mean Price ($/MWh)"],
+            mode = "lines",
+            name = "smoothed",
+            line = dict(color="red", dash="dash")
+        ))
+
     if separate_plot:
         n = aggs[selected_agg]["State"].nunique()
         fig.for_each_annotation(lambda a: a.update(
