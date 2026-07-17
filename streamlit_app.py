@@ -233,14 +233,20 @@ SMOOTH_X = {
 }
 
 aggs = compute_aggs(df)
+# x = pd.DataFrame(aggs["1 Month"]["Rolling 30d Mean Price ($/MWh)"])
+# y = df["Rolling 30d Mean Price ($/MWh)"]
+
+# st.dataframe(x.head())
+# st.dataframe(y.head())
+
 
 tab_price, tab_demand, tab_patterns, tab_spikes = st.tabs(
     TAB_LABELS, key="active_tab", on_change="rerun"
 )
 
 with tab_price:
-    st.dataframe(df.head())
-
+    # st.dataframe(df.head())
+    
     fig = px.line(
         aggs[selected_agg],
         x=AGG_X_COL[selected_agg],
@@ -255,15 +261,14 @@ with tab_price:
     )
     if selected_smooth:
         df_smooth = aggs[selected_agg]
-        # st.dataframe(df_smooth.head())
         fig.add_trace(go.Scatter(
             x = df_smooth[AGG_X_COL[selected_agg]],
             y = df_smooth[f'National {SMOOTH_X[selected_smooth]}'],
             mode = "lines",
-            name = "smoothed",
-            line = dict(color="white", dash="dash")
+            name = f"National {SMOOTH_X[selected_smooth]}",
+            line = dict(color="gold", dash="dot")
         ))
-#
+
     if separate_plot:
         n = aggs[selected_agg]["State"].nunique()
         fig.for_each_annotation(lambda a: a.update(
