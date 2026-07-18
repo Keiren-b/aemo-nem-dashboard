@@ -8,7 +8,7 @@ __pycache__/
 # Raw and processed data
 data/raw/
 data/processed/
-
+!data/processed/historical_price_demand.parquet
 # Notebook checkpoints
 .ipynb_checkpoints/
 
