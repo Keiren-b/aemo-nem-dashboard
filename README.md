@@ -5,10 +5,10 @@ National Electricity Market (NEM), built from AEMO dispatch data. A Python pipel
 ingests and cleans the raw AEMO feeds and the cleaned data drives a live Streamlit
 dashboard.
 
-**▶ Live dashboard:** [https://aemo-nem-app.streamlit.app/]
+**▶ Live dashboard:** https://aemo-nem-app.streamlit.app/
 
 
-![Dashboard overview](https://aemo-nem-app.dashboard_screenshot.png)
+**▶ Dashboard Screenshot:** https://aemo-nem-app.dashboard_screenshot.png
 
 ---
 
