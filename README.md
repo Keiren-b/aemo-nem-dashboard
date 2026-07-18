@@ -12,14 +12,19 @@ dashboard.
 
 ---
 
-## The question
+## Overview
 
-Wholesale NEM prices are extraordinarily volatile — within a single day a region can
-swing from *negative* prices (more generation than demand) to the market price cap.
-That volatility isn't noise: it drives real decisions about battery storage, hedging
-contracts, and demand response. This project asks a simple question with a non-obvious
-answer: **when and why do prices spike, and how does that differ across the five NEM
-regions?**
+Wholesale NEM prices are extraordinarily volatile. Within a single day a region
+can swing from *negative* prices (more generation than demand) to the market price
+cap. But underneath that volatility, price and demand follow structural, repeatable
+patterns, and those patterns are what shape decisions about investment in renewables
+and storage.
+
+This dashboard is a tool for surfacing them. It lets you explore price and demand at
+different levels of aggregation, overlay moving averages across multiple time scales,
+and split any chart out by NEM region to compare patterns between states. You can also
+set your own spike thresholds and date ranges to probe how often extreme-price events
+occur, and when.
 
 ## Key findings
 
