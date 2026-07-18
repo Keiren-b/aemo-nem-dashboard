@@ -8,7 +8,7 @@ dashboard.
 **▶ Live dashboard:** https://aemo-nem-app.streamlit.app/
 
 
-**▶ Dashboard Screenshot:** https://aemo-nem-app.dashboard_screenshot.png
+**▶ Dashboard Screenshot:** https://github.com/Keiren-b/aemo-nem-dashboard/blob/main/dashboard_screenshot.png
 
 ---
 
