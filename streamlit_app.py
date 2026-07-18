@@ -94,17 +94,14 @@ df = df_full[
 df["Is Spike"] = df["Price ($/MWh)"] > spike_threshold
 
 #--Format Sub heading---------------------------------------
-st.caption(
+st.text(
     "5-minute settlement intervals from the Australian Energy Market Operator (AEMO) · 2024–2026"
     )
-
-st.caption(
-    f"{len(df)} intervals shown"
-    )
-
+st.space("small")
 #--KPIS-------------------------------------------------------
-
+st.subheader("Live Electricity Prices")
 kpi_cols = st.columns(len(ALL_STATES))
+
 
 @st.cache_data(ttl=300)
 def fetch_live_prices() -> dict:
