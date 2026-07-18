@@ -300,7 +300,7 @@ with tab_price:
     fig.update_xaxes(matches=None, 
                      showticklabels=True)
 
-    st.plotly_chart(fig, use_container_width=True, key="price_chart")
+    st.plotly_chart(fig, width="stretch", key="price_chart")
 
 with tab_demand:
     fig = px.line(
@@ -330,7 +330,7 @@ with tab_demand:
     fig.update_xaxes(matches=None, 
                      showticklabels=True)
 
-    st.plotly_chart(fig, use_container_width=True, key="demand_chart")
+    st.plotly_chart(fig, width="stretch", key="demand_chart")
 
 with tab_patterns:
     col_left, col_right = st.columns(2)
@@ -351,7 +351,7 @@ with tab_patterns:
             labels={"Price ($/MWh)": "Avg Price ($/MWh)"},
         )
         fig.update_xaxes(tickmode="linear", dtick=2)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with col_right:
         seasonal = (
@@ -369,7 +369,7 @@ with tab_patterns:
             title="Average Price by Season",
             labels={"Price ($/MWh)": "Avg Price ($/MWh)"},
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 
 with tab_spikes:
@@ -385,7 +385,7 @@ with tab_spikes:
         text_auto=True,
     )
     fig.update_layout(showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     st.subheader(f"Spike Events — {len(spikes):,} intervals above ${spike_threshold}/MWh")
     display_cols = ["Settlement Date", "State", "Price ($/MWh)", "Demand (MW)", "Season", "Hour of Day"]
@@ -393,5 +393,5 @@ with tab_spikes:
         spikes[display_cols]
         .sort_values("Price ($/MWh)", ascending=False)
         .reset_index(drop=True),
-        use_container_width=True,
+        width="stretch",
     )
