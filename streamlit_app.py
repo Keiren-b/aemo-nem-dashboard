@@ -24,7 +24,7 @@ st.title("⚡ AEMO Price and Demand Dashboard")
 # Load data
 @st.cache_data
 def load_data() -> pd.DataFrame:
-    return transform.run()
+    return pd.read_parquet(transform.CLEAN_STORE)
 
 df_full = load_data()
 

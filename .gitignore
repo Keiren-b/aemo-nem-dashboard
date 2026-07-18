@@ -9,6 +9,7 @@ __pycache__/
 data/raw/
 data/processed/
 !data/processed/historical_price_demand.parquet
+!data/processed/nem_clean.parquet
 # Notebook checkpoints
 .ipynb_checkpoints/
 

@@ -6,7 +6,6 @@ from config import PROCESSED_DIR
 # Path constants
 HISTORICAL_RAW   = PROCESSED_DIR / "historical_price_demand.parquet"
 CLEAN_STORE      = PROCESSED_DIR / "nem_clean.parquet"
-CLEAN_STORE_CSV  = PROCESSED_DIR / "nem_clean.csv"
 
 log = logging.getLogger(__name__)
 
@@ -170,7 +169,6 @@ def run() -> pd.DataFrame:
     # df = add_price_classification(df) # added once that function exists
     # ... etc
     df.to_parquet(CLEAN_STORE, index=False)
-    df.to_csv(CLEAN_STORE_CSV, index=False)
     log.info("Wrote %d rows to %s", len(df), CLEAN_STORE.name)
 
     return df
