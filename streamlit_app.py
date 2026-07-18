@@ -41,6 +41,7 @@ if "active_tab" not in st.session_state:
     st.session_state["active_tab"] = TAB_LABELS[0]
 
 is_trend_tab = st.session_state["active_tab"] in TREND_TABS
+is_price_tab = st.session_state["active_tab"] == "📈 Price Trends"
 
 #---Sidebar-------------------------------------------
 
@@ -63,7 +64,7 @@ selected_smooth = st.sidebar.segmented_control("Select which smoothing you want"
                                             required=False,
                                             default=None,
                                             key="smoothselector",
-                                            disabled=not is_trend_tab)
+                                            disabled=not is_price_tab)
 
 st.sidebar.divider()
 
