@@ -261,13 +261,31 @@ with tab_price:
     )
     if selected_smooth:
         df_smooth = aggs[selected_agg]
-        fig.add_trace(go.Scatter(
-            x = df_smooth[AGG_X_COL[selected_agg]],
-            y = df_smooth[f'National {SMOOTH_X[selected_smooth]}'],
-            mode = "lines",
-            name = f"National {SMOOTH_X[selected_smooth]}",
-            line = dict(color="gold", dash="dot")
-        ))
+        if separate_plot:
+            states = sorted(df_smooth["State"].unique())
+            n_states = len(states)
+            for i, state in enumerate(states):
+                state_df = df_smooth[df_smooth["State"] == state]
+                fig.add_trace(
+                    go.Scatter(
+                        x=state_df[AGG_X_COL[selected_agg]],
+                        y=state_df[SMOOTH_X[selected_smooth]],
+                        mode="lines",
+                        name=f"{state} {SMOOTH_X[selected_smooth]}",
+                        line=dict(color="gold", dash="dot"),
+                        showlegend=False,
+                    ),
+                    row=n_states - i,
+                    col=1,
+                )
+        else:
+            fig.add_trace(go.Scatter(
+                x = df_smooth[AGG_X_COL[selected_agg]],
+                y = df_smooth[f'National {SMOOTH_X[selected_smooth]}'],
+                mode = "lines",
+                name = f"National {SMOOTH_X[selected_smooth]}",
+                line = dict(color="gold", dash="dot")
+            ))
 
     if separate_plot:
         n = aggs[selected_agg]["State"].nunique()
