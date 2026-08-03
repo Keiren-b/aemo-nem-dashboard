@@ -26,7 +26,7 @@ occur, and when.
 
 ![Price volatility by hour of day](assets/price-by-hour.png)
 
-## How it works
+## How it works 
 
 https://www.aemo.com.au/aemo/data/nem/priceanddemand/
 
