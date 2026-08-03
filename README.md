@@ -28,10 +28,9 @@ occur, and when.
 
 ## How it works
 
-**Data source.** [AEMO NEMWEB](https://nemweb.com.au) — public dispatch data for the five
-NEM regions (NSW1, QLD1, SA1, TAS1, VIC1). 
-(e.g. dispatch price / RRP and regional demand), the resolution (5-minute dispatch vs
-30-minute trading), and the date range you covered. -->
+https://www.aemo.com.au/aemo/data/nem/priceanddemand/
+
+**Data source.** public dispatch data in 5-min intervals for the 5 NEM regions (NSW1, QLD1, SA1, TAS1, VIC1) between 01-Jan_2024 and 01-Jan-2026
 
 **Pipeline.**
 

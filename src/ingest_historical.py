@@ -10,7 +10,6 @@ from config import RAW_DIR, PROCESSED_DIR, REGIONS
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-# check this
 
 BASE_URL = "https://www.aemo.com.au/aemo/data/nem/priceanddemand/"
 HISTORICAL_STORE = PROCESSED_DIR / "historical_price_demand.parquet"
@@ -26,7 +25,7 @@ def download_month_region(yyyymm: str, region: str) -> pd.DataFrame | None:
     url = f"{BASE_URL}/{fname}"
     raw_path = RAW_DIR / fname
 
-    if raw_path.exists():                       # cache: skip re-downloading
+    if raw_path.exists():                       
         log.info("Cached %s", fname)
         return pd.read_csv(raw_path)
     
@@ -39,9 +38,9 @@ def download_month_region(yyyymm: str, region: str) -> pd.DataFrame | None:
             log.warning("Skip %s (%s)", fname, e)
             return None
 
-    raw_path.write_bytes(resp.content)          # archive raw to data/raw
+    raw_path.write_bytes(resp.content)         
     log.info("Downloaded %s", fname)
-    time.sleep(1)                               # be polite between requests
+    time.sleep(1)                               
     return pd.read_csv(raw_path)
 
 def build_historical(start="2024-01", end="2025-12") -> pd.DataFrame:
